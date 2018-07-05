@@ -35,6 +35,21 @@ void CreatTree(Bitree *t)
     }
 }
 
+void visit(char data, int level)
+{
+    printf("%c in level:%d\n", data, level);
+}
+
+PreOrderTraverse(BiTree T, int level)
+{
+    if (T)
+    {
+        visit(T->data, level);
+        PreOrderTraverse(T->lNode, level + 1);
+        PreOrderTraverse(T->rNode, level + 1);
+    }
+}
+
 InOrderBiTree(Bitree* t)
 {
 

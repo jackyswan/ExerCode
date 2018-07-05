@@ -14,11 +14,18 @@ void get_next(String T, int *next)
 
     while ( i < T[0])
     {
-        if ( T[i] == T[j] )
+        if ( T[i] == T[j] || j == 0)
         {
             i ++;
             j ++;
-            next[i] = j;
+            if ( T[i] != T[j])
+            {
+                next[i] = j;
+            }
+            else
+            {
+                next[i] = next[j];
+            }
         }
         else
         {
@@ -26,4 +33,5 @@ void get_next(String T, int *next)
         }
     }
 }
+
 
