@@ -1,29 +1,30 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int count;
+int count = 0;
 
 int JudgeDanger(int row, int pos, int n, int(*chess)[8])
 {
     int i, j;
 
+    printf("judee\n");
     //左上方
-    for (i = row; i - 1 > 0 && pos - 1 > 0; i--)
+    for (i = row ; i-1 >= 0 && pos-1 >= 0; i--)
     {
-        if(chess[i-1][pos-1])
+        if(*(*(chess+i-1)+pos-1))
             return 0;
         pos--;
     }
     //正上方
-    for(i = row; i - 1 > 0; i--)
+    for(i = row; i - 1 >= 0; i--)
     {
-        if(chess[i-1][pos])
+        if(*(*(chess+i-1)+pos))
             return 0;
     }
     //右上方
-    for(i = row; i-1 > 0 && pos + 1< n; i--)
+    for(i = row; i-1 >= 0 && pos + 1< n; i--)
     {
-        if(chess[i-1][pos+1])
+        if(*(*(chess+i-1)+pos+1))
             return 0;
         pos++;
     }
@@ -42,7 +43,7 @@ void EightQueen(int row, int n, int (*chess)[8])
         {
             for(j = 0; j < n; j++)
             {
-                printf("%d ", chess[i][j]);
+                printf("%d ", *(*(chess+i)+j));
             }
         }
 
@@ -56,10 +57,10 @@ void EightQueen(int row, int n, int (*chess)[8])
         {
             for(j = 0; j < n; j ++)
             {
-                chess2[i][j] = chess[i][j];
+                chess2[i][j] = *(*(chess+i)+j);
             }
         }
-
+        printf("eightqueen %d\n", row);
         for(j = 0; j < n; j++)
         {
             if (JudgeDanger(row, j, n, chess2))
